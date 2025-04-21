@@ -1,0 +1,453 @@
+/* === Google Font Import === */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* === CSS Variables === */
+:root {
+  --bg: #121212;
+  --surface: #1F1F1F;
+  --primary: #F5F5F5;
+  --primary-variant: #BDBDBD;
+  --secondary: #9E9E9E;
+  --text-primary: #E0E0E0;
+  --text-secondary: #A3A3A3;
+  --border-color: #2C2C2C;
+  --shadow: rgba(0, 0, 0, 0.7);
+}
+
+/* === Keyframes === */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+@keyframes stripeMove {
+  0% { background-position: 0 0; }
+  100% { background-position: -200px 200px; }
+}
+
+/* === Global Resets & Base === */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+a:hover {
+  color: var(--primary-variant);
+}
+ul {
+  list-style: none;
+}
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.section {
+  padding: 80px 0;
+  animation: fadeInUp 0.8s ease-out both;
+}
+.section h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  text-align: center;
+}
+
+/* === Navbar === */
+.navbar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(16,16,16,0.5);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+/* logo image styling */
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+/* === Desktop menu === */
+.desktop-menu ul {
+  display: flex;
+  gap: 2.5rem;
+}
+.desktop-menu ul li a {
+  font-weight: 500;
+  color: var(--text-primary);
+  position: relative;
+  transition: color 0.3s;
+}
+.desktop-menu ul li a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 0; height: 2px;
+  background: var(--primary);
+  transition: width 0.3s;
+}
+.desktop-menu ul li a:hover {
+  color: var(--primary-variant);
+}
+.desktop-menu ul li a:hover::after {
+  width: 100%;
+}
+
+/* === Mobile toggle button === */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  z-index: 1100;
+}
+
+/* === Mobile dropdown menu === */
+.mobile-menu {
+  position: absolute;
+  top: 100%; left: 0;
+  width: 100%;
+  background: var(--surface);
+  box-shadow: 0 8px 20px var(--shadow);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-out;
+}
+.mobile-menu.open {
+  max-height: 400px; /* enough to fully reveal items */
+}
+.mobile-menu ul {
+  display: flex;
+  flex-direction: column;
+}
+.mobile-menu ul li a {
+  display: block;
+  padding: 1rem 2rem;
+  color: var(--primary);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.2s;
+}
+.mobile-menu ul li a:hover {
+  background: var(--bg);
+}
+
+/* === Responsive Breakpoints === */
+@media (max-width: 768px) {
+  .desktop-menu { display: none; }
+  .mobile-toggle { display: block; }
+}
+@media (min-width: 769px) {
+  .desktop-menu { display: block; }
+  .mobile-toggle { display: none; }
+  .mobile-menu { display: none !important; }
+}
+
+/* === Hero === */
+#hero {
+  text-align: center;
+  padding: 6rem 2rem;
+  background: linear-gradient(135deg, var(--surface), var(--bg));
+}
+#hero h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--primary);
+  animation: fadeInUp 1s ease-out both;
+}
+#hero p {
+  font-size: 1.25rem;
+  color: var(--secondary);
+  margin: 1rem 0 2rem;
+  animation: fadeInUp 1.2s ease-out both;
+}
+.hero-buttons a {
+  margin: 0 0.75rem;
+  padding: 0.75rem 1.75rem;
+  background: var(--primary-variant);
+  color: var(--bg);
+  border-radius: 50px;
+  font-weight: 500;
+  box-shadow: 0 5px 15px var(--shadow);
+  transition: background 0.3s, transform 0.3s;
+  animation: fadeInUp 1.4s ease-out both;
+}
+.hero-buttons a:hover {
+  background: var(--primary);
+  transform: translateY(-3px) scale(1.05);
+}
+
+/* === About === */
+#about {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+  text-align: center;
+  padding: 2rem 2rem;
+  animation: fadeInUp 1s ease-out both;
+}
+#about p {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-style: italic;
+  animation: fadeInUp 1.2s ease-out both;
+}
+#about::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 25% 25%, var(--primary-variant) 10%, transparent 40%),
+    radial-gradient(circle at 75% 75%, var(--primary-variant) 5%, transparent 30%),
+    repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.03) 20px, rgba(255,255,255,0.03) 40px);
+  background-size: 400px 400px, 300px 300px, 100px 100px;
+  animation: pulse 15s infinite alternate ease-in-out, stripeMove 15s linear infinite;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+/* === Skills === */
+#skills {
+  background: var(--bg);
+  padding: 2rem 2rem;
+  text-align: center;
+}
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+.skills-list span {
+  background: var(--surface);
+  color: var(--text-primary);
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  box-shadow: 0 3px 10px var(--shadow);
+  transform: scale(0);
+  animation: fadeInUp 1.6s ease-out both;
+}
+.skills-list span:hover {
+  animation: pulse 1.5s infinite;
+}
+
+/* === Experience === */
+#experience {
+    position: relative;
+    background: var(--surface);
+    padding: 2rem 2rem;
+    overflow: hidden;
+  }
+  #experience::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05) 0%, transparent 50%),
+      linear-gradient(
+        135deg,
+        rgba(255,255,255,0.02) 25%, transparent 25%,
+        transparent 50%, rgba(255,255,255,0.02) 50%,
+        rgba(255,255,255,0.02) 75%, transparent 75%,
+        transparent 100%
+      );
+    background-size: 150px 150px, 100px 100px;
+    animation: stripeMove 12s linear infinite;
+    opacity: 0.1;
+    z-index: 1;
+  }
+  #experience .job-entry {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border-color);
+    animation: fadeInUp 1.8s ease-out both;
+  }
+  #experience .job-entry:last-child {
+    border: none;
+  }
+  #experience .job-entry h3 {
+    font-size: 1.75rem;
+    color: var(--primary);
+  }
+  #experience .job-entry p {
+    color: var(--text-secondary);
+    margin: 0.5rem 0;
+  }
+  #experience .job-entry ul li {
+    margin-left: 1.5rem;
+    position: relative;
+    padding-left: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  #experience .job-entry ul li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--secondary);
+  }
+/* === Projects === */
+#projects {
+  background: var(--bg);
+  padding: 2rem 2rem;
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+.project-card {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 30px var(--shadow);
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInUp 2s ease-out both;
+}
+.project-card:hover {
+  transform: translateY(-10px);
+}
+.project-tech {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+.project-card button {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.8rem;
+  background: var(--primary-variant);
+  color: var(--bg);
+  border: none;
+  border-radius: 9999px;
+  font-weight: 600;
+  box-shadow: 0 5px 20px var(--shadow);
+  transition: transform 0.3s, background 0.3s;
+  animation: fadeInUp 2.2s ease-out both;
+}
+.project-card button:hover {
+  background: var(--primary);
+  transform: translateY(-3px) scale(1.03);
+}
+
+/* === Modal === */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.modal-content {
+  background: var(--surface);
+  padding: 2.5rem;
+  border-radius: 16px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 10px 40px var(--shadow);
+  animation: fadeInUp 2.4s ease-out both;
+}
+.modal-content h3 {
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+.modal-content ul li {
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+.modal-content button {
+  margin-top: 1.5rem;
+  background: var(--primary-variant);
+  color: var(--bg);
+  padding: 0.75rem 1.8rem;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: 0 5px 20px var(--shadow);
+  transition: transform 0.3s, background 0.3s;
+  animation: fadeInUp 2.6s ease-out both;
+}
+.modal-content button:hover {
+  background: var(--primary);
+  transform: translateY(-3px) scale(1.03);
+}
+
+/* === Contact === */
+#contact {
+  background: var(--surface);
+  padding: 4rem 2rem;
+}
+.contact-form {
+  display: grid;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+#contact input,
+textarea {
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-primary);
+  animation: fadeInUp 2.8s ease-out both;
+}
+#contact button {
+  padding: 0.75rem 1.8rem;
+  background: var(--primary-variant);
+  color: var(--bg);
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: 0 5px 20px var(--shadow);
+  transition: transform 0.3s, background 0.3s;
+  animation: fadeInUp 3s ease-out both;
+}
+#contact button:hover {
+  background: var(--primary);
+  transform: translateY(-3px) scale(1.03);
+}
+
+/* === Footer === */
+footer {
+  background: var(--surface);
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 1rem 0;
+}
+footer p {
+  font-size: 0.9rem;
+}
