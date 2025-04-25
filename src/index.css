@@ -16,25 +16,12 @@
 }
 
 /* === Keyframes === */
-@keyframes fadeInUp {
-  0%   { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.05); }
-}
-@keyframes stripeMove {
-  0%   { background-position: 0 0; }
-  100% { background-position: -200px 200px; }
-}
+@keyframes fadeInUp { 0% { opacity: 0; transform: translateY(20px);} 100% { opacity: 1; transform: translateY(0);} }
+@keyframes pulse { 0%,100% { transform: scale(1);} 50% { transform: scale(1.05);} }
+@keyframes stripeMove { 0% { background-position: 0 0;} 100% { background-position: -200px 200px;} }
 
 /* === Global Resets & Base === */
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--bg);
@@ -42,22 +29,13 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
 }
-a {
-  color: var(--primary);
-  text-decoration: none;
-  transition: color 0.3s;
-}
-a:hover {
-  color: var(--primary-variant);
-}
-ul {
-  list-style: none;
-}
+a { color: var(--primary); text-decoration: none; transition: color 0.3s; }
+a:hover { color: var(--primary-variant); }
+ul { list-style: none; }
 .container {
   width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0 2rem;
+  margin: 0;
+  padding: 0;
 }
 
 /* === Section wrapper === */
@@ -80,18 +58,35 @@ ul {
 /* === Navbar === */
 .navbar {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 3rem;
+  padding: 1rem 0;
   background: rgba(16,16,16,0.5);
   backdrop-filter: blur(10px);
   z-index: 1000;
 }
-.logo img { height: 40px; }
-.desktop-menu ul { display: flex; gap: 2.5rem; }
+.logo {
+  padding-left: 1.5rem; /* added left padding for logo */
+}
+.logo img {
+  height: 40px;
+}
+
+/* Desktop menu: align items to right */
+.desktop-menu {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 3rem;
+}
+.desktop-menu ul {
+  display: flex;
+  gap: 2.5rem;
+}
 .desktop-menu ul li a {
   font-weight: 500;
   color: var(--text-primary);
@@ -101,31 +96,55 @@ ul {
 .desktop-menu ul li a::after {
   content: '';
   position: absolute;
-  left: 0; bottom: -4px;
-  width: 0; height: 2px;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
   background: var(--primary);
   transition: width 0.3s;
 }
 .desktop-menu ul li a:hover { color: var(--primary-variant); }
 .desktop-menu ul li a:hover::after { width: 100%; }
-.mobile-toggle { display: none; background: none; border: none; color: var(--primary); cursor: pointer; z-index: 1100; }
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+/* === Mobile dropdown menu === */
 .mobile-menu {
-  position: absolute; top: 100%; left: 0;
-  width: 100%; background: var(--surface);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--surface);
   box-shadow: 0 8px 20px var(--shadow);
-  overflow: hidden; max-height: 0;
+  overflow: hidden;
+  max-height: 0;
   transition: max-height 0.3s ease-out;
 }
 .mobile-menu.open { max-height: 400px; }
-.mobile-menu ul { display: flex; flex-direction: column; }
+.mobile-menu ul {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
 .mobile-menu ul li a {
+  display: block;
   padding: 1rem 2rem;
+  text-align: left;
   color: var(--primary);
   font-weight: 500;
   border-bottom: 1px solid var(--border-color);
   transition: background 0.2s;
 }
 .mobile-menu ul li a:hover { background: var(--bg); }
+
 @media (max-width: 768px) {
   .desktop-menu { display: none; }
   .mobile-toggle { display: block; }
