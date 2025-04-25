@@ -8,7 +8,7 @@ export default function Hero() {
       <div className="hero-buttons">
         <a href="mailto:paramasivan.a@northeastern.edu">Email Me</a>
         <a href="https://linkedin.com/in/akassh-p-" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a href="/Akassh Paramasivan Final Resume.pdf" download>
+        <a href="/Akassh_Paramasivan_master_resume.pdf" download>
           Download Resume
         </a>
       </div>

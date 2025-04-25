@@ -1,66 +1,70 @@
 import React from 'react';
+import { Canvas } from '@react-three/fiber';
+import { TorusKnot } from '@react-three/drei';
+import './Experience.css';
 
 export default function Experience() {
   const jobs = [
     {
       title: 'Associate – Projects',
       company: 'Cognizant, Chennai, TN',
-      period: 'Sep 2023 – Jul 2024',
-      points: [
+      period: 'Sep 2023 – Jul 2024',
+      details: [
         'Developed all components using the MUI framework and Cambridge theme, including dynamic tables for admin, teacher, and exam officer roles.',
-        'Implemented CRUD functionality for exam officer, supporting single and bulk updates across all candidate levels.',
-        'Designed and translated admin UI/UX flows in Figma into React components ensuring seamless integration.',
-        'Configured Redux and integrated MuleSoft for GET/POST APIs, building reusable components and dynamic rendering.',
-        'Recognized with a performance award for outstanding contributions.',
+        'Implemented CRUD functionality for the exam officer role, supporting both single and bulk updates across all candidate levels.',
+        'Designed UI/UX workflows in Figma for the admin portal and translated prototypes into responsive React components, ensuring seamless integration and functionality.',
+        'Configured Redux and integrated MuleSoft for GET/POST APIs, creating reusable components and improving state management efficiency, cutting data-fetch latency by 30%.',
       ],
+      awards: 'Recognized for splendid performance and received a performance award for outstanding contributions.'
     },
     {
       title: 'Programmer Analyst',
       company: 'Cognizant, Chennai, TN',
-      period: 'Sep 2022 – Sep 2023',
-      points: [
-        'Implemented localization using i18next, adapting the application for AUS, US, and CA locales.',
-        'Handled back-end integration by submitting labels to retrieve API responses and efficiently mapping them to corresponding keys.',
-        'Developed dynamic date functions to accommodate specific date formats and requirements across different regions.',
-      ],
+      period: 'Sep 2022 – Sep 2023',
+      details: [
+        'Implemented localization using the i18next globalization framework, adapting the application for AUS, US, and CA locales.',
+        'Handled back-end integration by submitting label requests, retrieving API responses, and efficiently mapping keys to labels for accurate data rendering.',
+        'Developed dynamic date functions to accommodate region-specific formats, reducing format-related errors by 20% and ensuring accurate functionality across regions.',
+      ]
     },
     {
       title: 'Programmer Analyst Trainee',
       company: 'Cognizant, Chennai, TN',
-      period: 'Sep 2021 – Sep 2022',
-      points: [
-        'Played a crucial role in designing React/Redux web components for loan approval data collection.',
-        'Built modules for franchise management, loan requests, admin functions, and user registration using a client‑toolkit.',
-        'Resolved SONAR-identified code smells and enhanced UI accessibility for a smoother user experience.',
-      ],
+      period: 'Sep 2021 – Sep 2022',
+      details: [
+        'Designed and implemented React/Redux web components for end-to-end loan approval data collection, improving data accuracy and user experience.',
+        'Built critical modules including franchise management, loan requests, admin functions, and user registration using a custom client toolkit.',
+        'Resolved SONAR-identified code smells and enhanced UI accessibility, improving accessibility metrics by 20% for a smoother and more inclusive user experience.',
+      ]
     },
     {
       title: 'Intern',
       company: 'Cognizant, Chennai, TN',
-      period: 'Feb 2021 – Jun 2021',
-      points: [
-        'Led a team of 24 students during internship, providing guidance and progress reviews.',
-        'Architected the workflow for an issue‑tracking system using React and Spring Boot to ensure efficient issue resolution.',
-      ],
-    },
+      period: 'Feb 2021 – Jun 2021',
+      details: [
+        'Led a team of 24 students during internship, providing technical guidance, conducting progress reviews, and ensuring project milestones were met.',
+        'Architected the workflow for an issue-tracking system using React and Spring Boot, streamlining the bug-reporting and resolution process.',
+      ]
+    }
   ];
 
   return (
     <section id="experience" className="section">
-      <center><h2>Experience</h2></center>
-      {jobs.map((job, idx) => (
-        <div key={idx} className="job-entry">
-          <h3>{job.title}</h3>
-          <p>
-            <strong>{job.company}</strong> | {job.period}
-          </p>
-          <ul>
-            {job.points.map((p, i) => (
-              <li key={i}>{p}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      <div className="container">
+        <h2>Experience</h2>
+        {jobs.map((job, idx) => (
+          <div key={idx} className="job-entry">
+            <h3>{job.title}</h3>
+            <p><strong>{job.company}</strong> | {job.period}</p>
+            <ul>
+              {job.details.map((detail, i) => (
+                <li key={i}>{detail}</li>
+              ))}
+            </ul>
+            {job.awards && <p className="award">{job.awards}</p>}
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

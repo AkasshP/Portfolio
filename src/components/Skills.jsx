@@ -27,7 +27,7 @@ export default function Skills() {
     'Data Structures',
     'GenAI',
     'Agentic AI',
-    'AWS (S3, EC2, RDS, Lambda, IAM, Glue, Redshift)',
+    'AWS (S3, EC2, RDS, Lambda, IAM)',
     'Azure',
     'CI/CD Pipelines',
     'Git',
@@ -41,12 +41,16 @@ export default function Skills() {
 
   return (
     <section id="skills" className="section">
+    <div className="container">
       <h2>Technical Skills</h2>
-      <div className="skills-list">
-        {skills.map(skill => (
-          <span key={skill}>{skill}</span>
-        ))}
+      <div className="skills-box">
+        <div className="skills-list">
+          {skills.map((skill, i) => (
+            <span key={i}>{skill}</span>
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
   );
 }
